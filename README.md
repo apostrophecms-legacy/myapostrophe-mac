@@ -1,4 +1,4 @@
-# myapostrophe
+# myapostrophe-mac
 
 This is a REALLY simple way to install Apostrophe 2 on a Mac. But if you have a Windows or Linux system, you can still use Apostrophe! We run it on Linux every day. Just [check out the Apostrophe sandbox documentation.](http://github.com/punkave/apostrophe-sandbox)
 
