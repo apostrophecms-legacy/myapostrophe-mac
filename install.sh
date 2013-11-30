@@ -50,7 +50,7 @@ MIN_MACOS_VERSION="10."
   (
     rm -rf tmp/* &&
     cd tmp &&
-    curl -o node.tar.gz http://nodejs.org/dist/v0.10.22/node-v${NODE_VERSION}-darwin-x86.tar.gz &&
+    curl -L -o node.tar.gz http://nodejs.org/dist/v0.10.22/node-v${NODE_VERSION}-darwin-x86.tar.gz &&
     tar -zxf node.tar.gz --strip-components=1 &&
     # rsync is much better at updating things than cp
     rsync -a bin ~/myapostrophe &&
@@ -67,7 +67,7 @@ MIN_MACOS_VERSION="10."
   (
     rm -rf tmp/* &&
     cd tmp &&
-    curl -o mongodb.tar.gz http://fastdl.mongodb.org/osx/mongodb-osx-x86_64-${MONGODB_VERSION}.tgz &&
+    curl -L -o mongodb.tar.gz http://fastdl.mongodb.org/osx/mongodb-osx-x86_64-${MONGODB_VERSION}.tgz &&
     tar -zxf mongodb.tar.gz --strip-components=1 &&
     rsync -a bin ~/myapostrophe
   ) &&
@@ -82,7 +82,7 @@ MIN_MACOS_VERSION="10."
     curl -L -o bin/imagecrunch https://github.com/punkave/imagecrunch/releases/download/1.0.0/imagecrunch &&
     chmod 700 bin/imagecrunch &&
     mkdir -p share/man/man1 &&
-    curl -o share/man/man1/imagecrunch.1 https://raw.github.com/punkave/imagecrunch/master/imagecrunch/imagecrunch.1
+    curl -L -o share/man/man1/imagecrunch.1 https://raw.github.com/punkave/imagecrunch/master/imagecrunch/imagecrunch.1
   ) &&
 
 
