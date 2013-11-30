@@ -2,6 +2,8 @@
 
 This is a REALLY simple way to install Apostrophe 2 on a Mac. But if you have a Windows or Linux system, you can still use Apostrophe! We run it on Linux every day. Just [check out the Apostrophe sandbox documentation.](http://github.com/punkave/apostrophe-sandbox)
 
+Mac Pros who dig node, macports, homebrew and the command line will probably want to [go straight to the sandbox project too.](http://github.com/punkave/apostrophe-sandbox)
+
 ## Installing the Apostrophe Sandbox on Your Mac
 
 **One line install:** just run this command! Be sure to copy and paste this to your terminal window as **one line**:
@@ -24,7 +26,13 @@ To start it up again later, type:
 
     apos-start
 
-In a terminal window. You do *not* need to run the installer again.
+In a terminal window. Now visit:
+
+http://localhost:3000/
+
+To see your site. You do *not* need to run the installer again.
+
+### Your Second Site
 
 To start another site, copy the `apostrophe-sandbox` folder to another nice, short name with no spaces, like `xyzcorp`. Edit `app.js` and be sure to change `shortname` to match. Then you can type:
 
