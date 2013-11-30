@@ -79,7 +79,7 @@ MIN_MACOS_VERSION="10."
   ############################################
   # Install imagecrunch
   (
-    curl -o bin/imagecrunch https://github.com/punkave/imagecrunch/releases/download/1.0.0/imagecrunch &&
+    curl -L -o bin/imagecrunch https://github.com/punkave/imagecrunch/releases/download/1.0.0/imagecrunch &&
     chmod 700 bin/imagecrunch &&
     mkdir -p share/man/man1 &&
     curl -o share/man/man1/imagecrunch.1 https://raw.github.com/punkave/imagecrunch/master/imagecrunch/imagecrunch.1
@@ -157,8 +157,12 @@ EOM
     git clone https://github.com/punkave/apostrophe-sandbox.git sites/apostrophe-sandbox &&
     (cd sites/apostrophe-sandbox && npm install && node app apostrophe:reset) &&
     (
+      echo
+      echo
+      echo "############################################################"
+      echo
       echo "Done! Since this is your first install, I'll start the"
-      echo "sandbox site for you, then open your browser in 10 seconds"
+      echo "sandbox site for you, then open your browser IN 10 SECONDS"
       echo "so you can explore the sandbox."
       echo
       echo "You may start your sandbox site again at any time by typing:"
@@ -167,6 +171,10 @@ EOM
       echo "And then accessing:"
       echo
       echo "http://localhost:3000/"
+      echo
+      echo "############################################################"
+      echo
+      echo
       ( sleep 10 && open http://localhost:3000/ ) &
       bin/apos-start
     )

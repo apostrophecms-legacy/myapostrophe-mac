@@ -8,7 +8,7 @@ Mac Pros who dig node, macports, homebrew and the command line will probably wan
 
 **One line install:** just run this command! Be sure to copy and paste this to your terminal window as **one line**:
 
-    curl -o apos-install.sh https://raw.github.com/punkave/myapostrophe/master/install.sh && sh apos-install.sh
+    curl -L -o apos-install.sh https://raw.github.com/punkave/myapostrophe/master/install.sh && sh apos-install.sh
 
 The installer will download everything you need, then launch the Apostrophe sandbox site, running on your computer. It'll even open your browser so you can check it out.
 
