@@ -61,8 +61,8 @@ MIN_MACOS_VERSION="10."
 
 
 
-  ############################################
-  # Install or update MongoDB
+  # ############################################
+  # # Install or update MongoDB
   echo "Installing MongoDB" &&
   (
     rm -rf tmp/* &&
@@ -105,21 +105,28 @@ EOM
 
   ############################################
   # Script to start mongodb
-  cat << EOM > bin/startmongodb &&
+  cat << EOM > bin/apos-start-mongo &&
 #!/bin/sh
-mongod --dbpath=\$HOME/myapostrophe/db --quiet --pidfilepath=\$HOME/myapostrophe/run/mongodb.pid &
+(
+  ( ps auxw | grep /mongod | grep -q -v grep ) && echo "Already running"
+) ||
+(
+  echo "Starting mongodb..."
+  mongod --dbpath=\$HOME/myapostrophe/db --quiet --pidfilepath=\$HOME/myapostrophe/run/mongodb.pid &
+  sleep 5
+)
 EOM
-  chmod 700 bin/startmongodb &&
+  chmod 700 bin/apos-start-mongo &&
 
 
 
   ############################################
   # Script to stop mongodb
-  cat << EOM > bin/stopmongodb &&
+  cat << EOM > bin/apos-stop-mongo &&
 #!/bin/sh
 kill \`cat ~/myapostrophe/run/mongodb.pid\`
 EOM
-  chmod 700 bin/stopmongodb &&
+  chmod 700 bin/apos-stop-mongo &&
 
 
 
@@ -132,7 +139,7 @@ SITE="\$1"
 if [ -z "\$SITE" ]; then
   SITE="apostrophe-sandbox"
 fi
-( (ps auxw | grep mongod | grep -q -v grep) || (echo "Starting mongodb..." && startmongodb && sleep 5) ) &&
+apos-start-mongo &&
 cd ~/myapostrophe/sites/\$SITE &&
 echo "Starting the site. When you are finished with it, press Control-C." &&
 node app
@@ -144,6 +151,7 @@ EOM
 
   ############################################
   # Load apos-env so this terminal window can be used immediately
+  echo "Sourcing Environment Variables"
   source ~/myapostrophe/bin/apos-env &&
 
 
@@ -155,7 +163,12 @@ EOM
   # be swank
   if [ ! -d sites/apostrophe-sandbox ]; then
     git clone https://github.com/punkave/apostrophe-sandbox.git sites/apostrophe-sandbox &&
-    (cd sites/apostrophe-sandbox && npm install && node app apostrophe:reset) &&
+    (
+      cd sites/apostrophe-sandbox &&
+      npm install &&
+      apos-start-mongo &&
+      node app apostrophe:reset
+    ) &&
     (
       echo
       echo
@@ -176,6 +189,7 @@ EOM
       echo
       echo
       ( sleep 10 && open http://localhost:3000/ ) &
+      echo "Running apos-start"
       bin/apos-start
     )
     exit 0
