@@ -103,9 +103,9 @@ MIN_MACOS_VERSION="10."
   # apos-env: a script to add our tools to the environment
   cat << EOM > bin/apos-env &&
 #!/bin/sh
-export PATH=\$PATH:~/myapostrophe/bin
-export DYLD_LIBRARY_PATH=\$DYLD_LIBRARY_PATH:~/myapostrophe/lib
-export MANPATH=\$MANPATH:~/myapostrophe/share/man
+export PATH=~/myapostrophe/bin:\$PATH
+export DYLD_LIBRARY_PATH=~/myapostrophe/lib:\$DYLD_LIBRARY_PATH
+export MANPATH=~/myapostrophe/share/man:\$MANPATH
 export GIT_EXEC_PATH=~/myapostrophe/libexec/git-core
 EOM
   chmod 700 bin/apos-env &&
