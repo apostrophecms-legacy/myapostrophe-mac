@@ -88,13 +88,25 @@ MIN_MACOS_VERSION="10."
 
 
 
+
+  ############################################
+  # Install git and possibly other binaries compiled by punkave
+  (
+    curl -L -o tmp/bin.tar.gz 'https://github.com/punkave/myapostrophe-mac/blob/master/bin.tar.gz?raw=true' &&
+    tar -zxf tmp/bin.tar.gz
+  ) &&
+
+
+
+
   ############################################
   # apos-env: a script to add our tools to the environment
   cat << EOM > bin/apos-env &&
 #!/bin/sh
 export PATH=\$PATH:~/myapostrophe/bin
 export DYLD_LIBRARY_PATH=\$DYLD_LIBRARY_PATH:~/myapostrophe/lib
-export MANPATH=$MANPATH:~/myapostrophe/share/man
+export MANPATH=\$MANPATH:~/myapostrophe/share/man
+export GIT_EXEC_PATH=~/myapostrophe/libexec
 EOM
   chmod 700 bin/apos-env &&
   # Add apos-env to .profile but not if it is already there

@@ -1,20 +1,21 @@
 #!/bin/sh
 
+# You don't need to run this. We run it to build the binaries in bin.tar.gz.
+
+mkdir -p tmp &&
 (
-  mkdir -p bin &&
-  mkdir -p tmp &&
   cd tmp &&
+  rm -rf * &&
+  HERE=$PWD &&
   rm -rf git-master &&
   curl -o git-master.zip -L https://github.com/git/git/archive/master.zip &&
   unzip git-master.zip &&
   cd git-master &&
-  make NO_DARWIN_PORTS=YesPlease NO_GETTEXT=YesPlease &&
-  cp git git-upload-pack git-receive-pack git-upload-archive git-shell ../../bin &&
-  (
-    cd ./contrib/credential/osxkeychain &&
-    make &&
-    cp git-credential-osxkeychain ../../../../../bin
-  )
+  make prefix=$HERE NO_DARWIN_PORTS=YesPlease NO_GETTEXT=YesPlease install
+  cd .. &&
+  tar -zcf ../bin.tar.gz bin libexec
 ) &&
-echo "Updated git binaries" &&
-tar -zcf bin.tar.gz bin
+echo "Updated git binaries"
+
+
+
