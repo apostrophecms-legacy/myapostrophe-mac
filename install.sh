@@ -106,7 +106,7 @@ MIN_MACOS_VERSION="10."
 export PATH=\$PATH:~/myapostrophe/bin
 export DYLD_LIBRARY_PATH=\$DYLD_LIBRARY_PATH:~/myapostrophe/lib
 export MANPATH=\$MANPATH:~/myapostrophe/share/man
-export GIT_EXEC_PATH=~/myapostrophe/libexec
+export GIT_EXEC_PATH=~/myapostrophe/libexec/git-core
 EOM
   chmod 700 bin/apos-env &&
   # Add apos-env to .profile but not if it is already there
